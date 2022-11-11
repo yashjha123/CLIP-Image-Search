@@ -5,6 +5,7 @@ clip @ git+https://github.com/openai/CLIP.git@d50d76daa670286dd6cacf3bcd80b5e482
 Flask==2.2.2
 Flask-Cors==3.0.10
 ftfy==6.1.1
+gunicorn==20.0.4
 idna==3.4
 itsdangerous==2.1.2
 Jinja2==3.1.2
