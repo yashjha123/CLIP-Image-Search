@@ -18,8 +18,8 @@ print(f"Using {device} for torch")
 print("Loading model...")
 model, preprocess = clip.load("ViT-B/32", device=device)
 print(f"Model Loaded")
-path = "/home/test/Desktop/WebD/batch_images/batch_features/batch"
-jsonFile = json.load(open("/home/test/Desktop/WebD/batch_images/compiled_data.json","r"))
+path = "./batch_images/batch_features/batch"
+jsonFile = json.load(open("./batch_images/compiled_data.json","r"))
 print("Loaded data file")
 
 def compute_txt(input_text):
