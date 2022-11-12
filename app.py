@@ -1,16 +1,16 @@
 from flask import Flask, jsonify, request
-from model import allFunctions 
-from urllib.request import urlretrieve
-# s
-from flask_cors import CORS, cross_origin
-
 import os
+NGROK_TOKEN = os.environ["NGROK_TOKEN"]
+
+from urllib.request import urlretrieve
+
 bucket_name = "kds-e62ac6a7fd414c93dfaf8bcca6c566e6fb8523ab591f1ca05906296d"
 
 if(not os.path.isdir("batch_images")):
     os.mkdir("batch_images")
 if(not os.path.isdir("batch_images/batch_features")):
     os.mkdir("batch_images/batch_features")
+
 downloads = [
     "batch_images/compiled_data.json",
     "batch_images/batch_features/batch-0",
@@ -37,8 +37,16 @@ for download in downloads:
         print(f"Already Downloaded {download}")
         continue
     getUrl(download)
+from model import allFunctions 
+# s
+from flask_cors import CORS, cross_origin
+from flask_ngrok2 import run_with_ngrok
+
+
 
 app = Flask(__name__)
+run_with_ngrok(app,NGROK_TOKEN)  # Start ngrok when app is run
+
 cors = CORS(app)
 
 @app.route("/encode",methods=["POST"])
@@ -54,3 +62,5 @@ def encode_text():
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
+if __name__ == '__main__':
+    app.run()
